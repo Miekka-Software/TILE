@@ -3,7 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 
-struct Tile {
+class Tile {
+public:
+    static std::vector<sf::Vector2f> expandCoords(sf::Vector2f, float);
     sf::Vector2f size;
     sf::Vector2f position;
     int tex;
