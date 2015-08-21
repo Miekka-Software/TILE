@@ -1,0 +1,7 @@
+{
+    "xSetSize" : 4,
+    "ySetSize" : 1,
+    "tileSize" : 16,
+    "imageFile" : "tilegrid.png",
+    "ids" : ["stone","dirt","grass","sponge"]
+}

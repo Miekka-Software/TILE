@@ -5,11 +5,16 @@
 #include <string>
 
 class Tile {
-public:
-    static std::vector<sf::Vector2f> expandCoords(sf::Vector2f, int);
-    sf::Vector2f size;
-    sf::Vector2f position;
-    int tex;
+    public:
+        Tile();
+        void setPostion(std::vector<sf::Vector2f>);
+        void setTile(std::vector<sf::Vector2f>);
+        void toggleCollide();
+        sf::VertexArray returnVArray();
+        static std::vector<sf::Vector2f> expandCoords(sf::Vector2f, int);
+    private:
+        bool collide;
+        sf::VertexArray verts;
 };
 
 class TileSet {
@@ -24,6 +29,22 @@ class TileSet {
         std::string imageFile;
         std::vector<std::string> ids;
         std::map<std::string,sf::Vector2f> Set;
+};
+
+class TileMap : public sf::Drawable, public sf::Transformable {
+    public:
+        TileMap(std::string, TileSet&);
+    private:
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
+        states.transform *= getTransform();
+        states.texture = &tSet.setTexture;
+        target.draw(vArray, states);
+    }
+    int xLevSize;
+    int yLevSize;
+    int tileSize;
+    sf::VertexArray vArray;
+    TileSet& tSet;
 };
 
 #endif

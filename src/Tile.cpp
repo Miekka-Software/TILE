@@ -6,6 +6,32 @@
 #include <json/json.h>
 using namespace sf;
 
+Tile::Tile() {
+    collide = false;
+    verts.resize(4);
+    verts.setPrimitiveType(Quads);
+}
+
+void Tile::setPostion(std::vector<sf::Vector2f> pnts) {
+    for(int i = 0; i < 4; ++i) {
+        verts[i].position = pnts[i];
+    }
+}
+//Use template functions for these two (above and below).
+void Tile::setTile(std::vector<sf::Vector2f> texps) {
+    for(int i = 0; i < 4; ++i) {
+        verts[i].texCoords = texps[i];
+    }
+}
+
+void Tile::toggleCollide() {
+    collide = !collide;
+}
+
+VertexArray Tile::returnVArray() {
+    return verts;
+}
+
 std::vector<Vector2f> Tile::expandCoords(Vector2f coord, int ts) {
     std::vector<Vector2f> tileCoords;
     tileCoords.push_back(coord);
@@ -54,5 +80,8 @@ std::vector<Vector2f> TileSet::getTile(std::string id) {
     if(!(it == Set.end())) {
         return Tile::expandCoords(it->second, tileSize);
     }
-    return Tile::expandCoords(Vector2f(0,0), tileSize);
+    else {
+        std::cout << "ERROR: TileID " << id << " does not exist\n";
+        exit(-1);
+    }
 }

@@ -1,0 +1,8 @@
+{
+    "xLevSize" : 3,
+    "yLevSize" : 3,
+    "tileSize" : 64,
+    "data" : [{"id" : "dirt"}, {"id" : "stone"}, {"id" : "dirt"},
+              {"id" : "stone"}, {"id" : "grass"}, {"id" : "stone"},
+              {"id" : "dirt"}, {"id" : "stone"}, {"id" : "dirt"}]
+}
