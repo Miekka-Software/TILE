@@ -2,14 +2,16 @@
 #define TILE_H
 
 #include <SFML/Graphics.hpp>
+#include <json/json.h>
 #include <string>
 
 class Tile {
     public:
         Tile();
-        void setPostion(std::vector<sf::Vector2f>);
+        void setPostion(sf::Vector2f);
         void setTile(std::vector<sf::Vector2f>);
         void toggleCollide();
+        int size;
         sf::VertexArray returnVArray();
         static std::vector<sf::Vector2f> expandCoords(sf::Vector2f, int);
     private:
@@ -33,18 +35,20 @@ class TileSet {
 
 class TileMap : public sf::Drawable, public sf::Transformable {
     public:
-        TileMap(std::string, TileSet&);
+        TileMap(std::string, TileSet*);
     private:
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
         states.transform *= getTransform();
-        states.texture = &tSet.setTexture;
+        states.texture = &tSet->setTexture;
         target.draw(vArray, states);
-    }
-    int xLevSize;
-    int yLevSize;
-    int tileSize;
-    sf::VertexArray vArray;
-    TileSet& tSet;
+        }
+        void push_tile(Tile);
+        int xLevSize;
+        int yLevSize;
+        int tileSize;
+        sf::VertexArray vArray;
+        std::vector<Json::Value> tiles;
+        TileSet* tSet;
 };
 
 #endif
