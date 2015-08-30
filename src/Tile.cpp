@@ -42,6 +42,15 @@ std::vector<Vector2f> Tile::expandCoords(Vector2f coord, int ts) {
     return tileCoords;
 }
 
+std::vector<Vector2f> Tile::expandCoords(Vector2f coord, Vector2f td) {
+    std::vector<Vector2f> tileCoords;
+    tileCoords.push_back(coord);
+    tileCoords.push_back(Vector2f(coord.x, coord.y + td.y));
+    tileCoords.push_back(Vector2f(coord.x + td.x, coord.y + td.y));
+    tileCoords.push_back(Vector2f(coord.x + td.x, coord.y));
+    return tileCoords;
+}
+
 TileSet::TileSet(std::string file) {
     std::ifstream datFile(file);
     if (datFile.is_open()) {

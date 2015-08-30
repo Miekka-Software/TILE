@@ -15,9 +15,9 @@ int main()
     sf::RenderWindow window(sf::VideoMode(600, 600), "TILE Dev Testing");
     TileSet ts("tileset.json");
     TileMap tm("levelmap.json", &ts);
-    Entity ch("tilegrid.png", sf::Vector2f(64,64), sf::Vector2f(32,32));
+    Entity ch("tilegrid.png", sf::Vector2f(64,64), sf::Vector2f(128,128));
 
-    int speed = 3;
+    int speed = 1;
 
     while (window.isOpen())
     {
@@ -28,17 +28,17 @@ int main()
                 window.close();
         }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            ch.move(-speed,0);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+            ch.moveEntity(-speed,0);
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            ch.move(speed,0);
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+            ch.moveEntity(speed,0);
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            ch.move(0,speed);
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            ch.moveEntity(0,-speed);
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-            ch.move(0,-speed);
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+            ch.moveEntity(0,speed);
         }
 
         window.clear();

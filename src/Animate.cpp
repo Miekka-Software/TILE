@@ -10,8 +10,30 @@ Entity::Entity(std::string file, Vector2f texsize, Vector2f spritesize) {
         std::cout << "ERROR: Failed to load Entity Texture.\n";
         exit(-1);
     }
-    sprite.setTexture(tex);
-    sprite.setTextureRect(IntRect(0,0,texsize.x,texsize.y));
-    Vector2f scaleFactors = Vector2f(spritesize.x/texsize.x, spritesize.y/texsize.y);
-    sprite.setScale(scaleFactors);
+    vArray.resize(4);
+    vArray.setPrimitiveType(Quads);
+    auto pnts = Tile::expandCoords(Vector2f(0,0), spritesize);
+    for(int i = 0; i < 4; ++i) {
+        vArray[i].position = pnts[i];
+    }
+    auto texps = Tile::expandCoords(Vector2f(0,0), texsize);
+    for(int i = 0; i < 4; ++i) {
+        vArray[i].texCoords = texps[i];
+    }
+}
+
+void Entity::moveEntity(float x, float y) {
+    if (y < 0) {
+        dir = Up;
+    }
+    else if (x > 0) {
+        dir = Right;
+    }
+    else if (y > 0) {
+        dir = Down;
+    }
+    else if (x < 0) {
+        dir = Left;
+    }
+    this->move(x,y);
 }

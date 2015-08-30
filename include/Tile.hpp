@@ -14,6 +14,7 @@ class Tile {
         int size;
         sf::VertexArray returnVArray();
         static std::vector<sf::Vector2f> expandCoords(sf::Vector2f, int);
+        static std::vector<sf::Vector2f> expandCoords(sf::Vector2f, sf::Vector2f);
     private:
         bool collide;
         sf::VertexArray verts;
