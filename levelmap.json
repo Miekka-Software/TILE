@@ -2,7 +2,7 @@
     "xLevSize" : 3,
     "yLevSize" : 3,
     "tileSize" : 64,
-    "tiles" : [{"id" : "dirt"}, {"id" : "stone"}, {"id" : "dirt"},
-              {"id" : "stone"}, {"id" : "wood"}, {"id" : "stone"},
-              {"id" : "dirt"}, {"id" : "stone"}, {"id" : "dirt"}]
+    "tiles" : [{"id" : "wood"}, {"id" : "wood"}, {"id" : "wood"},
+              {"id" : "wood"}, {"id" : "wood"}, {"id" : "wood"},
+              {"id" : "wood"}, {"id" : "wood"}, {"id" : "wood"}]
 }
