@@ -34,9 +34,9 @@ class TileSet {
         std::map<std::string,sf::Vector2f> Set;
 };
 
-class TileMap : public sf::Drawable, public sf::Transformable {
+class TileMapL : public sf::Drawable, public sf::Transformable {
     public:
-        TileMap(std::string, TileSet*);
+        TileMapL(std::string, TileSet*);
     private:
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
         states.transform *= getTransform();

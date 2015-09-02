@@ -21,19 +21,3 @@ Entity::Entity(std::string file, Vector2f texsize, Vector2f spritesize) {
         vArray[i].texCoords = texps[i];
     }
 }
-
-void Entity::moveEntity(float x, float y) {
-    if (y < 0) {
-        dir = Up;
-    }
-    else if (x > 0) {
-        dir = Right;
-    }
-    else if (y > 0) {
-        dir = Down;
-    }
-    else if (x < 0) {
-        dir = Left;
-    }
-    this->move(x,y);
-}

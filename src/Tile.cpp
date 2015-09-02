@@ -96,7 +96,7 @@ std::vector<Vector2f> TileSet::getTile(std::string id) {
     }
 }
 
-TileMap::TileMap(std::string file, TileSet* t) {
+TileMapL::TileMapL(std::string file, TileSet* t) {
     std::ifstream datFile(file);
     vArray.setPrimitiveType(Quads);
     tSet = t;
@@ -136,7 +136,7 @@ TileMap::TileMap(std::string file, TileSet* t) {
     }
 }
 
-void TileMap::push_tile(Tile t) {
+void TileMapL::push_tile(Tile t) {
     VertexArray tVArray = t.returnVArray();
     for(int i = 0; i < 4; ++i) {
         vArray.append(tVArray[i]);

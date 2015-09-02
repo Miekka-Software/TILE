@@ -13,9 +13,12 @@ using namespace std;
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(600, 600), "TILE Dev Testing");
+    window.setFramerateLimit(60);
     TileSet ts("tileset.json");
-    TileMap tm("levelmap.json", &ts);
-    Entity ch("tilegrid.png", sf::Vector2f(64,64), sf::Vector2f(128,128));
+    TileMapL tm("levelmap.json", &ts);
+    AnimateL<Entity> al;
+    al.addEntity(Entity("tilegrid.png", sf::Vector2f(64,64), sf::Vector2f(128,128)));
+    al.addEntity(Entity("tilegrid.png", sf::Vector2f(32,32), sf::Vector2f(128,128)));
 
     int speed = 1;
 
@@ -29,21 +32,34 @@ int main()
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            ch.moveEntity(-speed,0);
+            al[0].move(-speed,0);
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            ch.moveEntity(speed,0);
+            al[0].move(speed,0);
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            ch.moveEntity(0,-speed);
+            al[0].move(0,-speed);
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-            ch.moveEntity(0,speed);
+            al[0].move(0,speed);
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+            al[1].move(-speed,0);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+            al[1].move(speed,0);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+            al[1].move(0,-speed);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+            al[1].move(0,speed);
         }
 
         window.clear();
         window.draw(tm);
-        window.draw(ch);
+        window.draw(al);
         window.display();
     }
 
